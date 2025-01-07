@@ -1,9 +1,9 @@
 import React, { memo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Typography from "@/components/Typography.jsx";
+import Typography from "@/components/core/Typography.jsx";
 import { Ionicons } from "@expo/vector-icons";
 
-import { Colors } from "@/constants/Colors";
+import COLORS from "@/constants/Colors";
 
 const Button = memo(
   ({
@@ -34,8 +34,8 @@ const Button = memo(
           style={({ pressed }) => [
             {
               backgroundColor: pressed
-                ? Colors["green"][600]
-                : Colors["green"][500],
+                ? COLORS["green"][600]
+                : COLORS["green"][500],
             },
             isHovered && styles.containedHover,
             getBorderRadius(rounded),
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
   symbol: {
     // color: "inherit",
     // tintColor: "inherit",
-    color: Colors["white"],
-    tintColor: Colors["white"],
+    color: COLORS["white"],
+    tintColor: COLORS["white"],
   },
   contained: {
     display: "flex",
@@ -93,11 +93,11 @@ const styles = StyleSheet.create({
       "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1)",
   },
   containedText: {
-    color: Colors["white"],
-    tintColor: Colors["white"],
+    color: COLORS["white"],
+    tintColor: COLORS["white"],
   },
   containedHover: {
-    backgroundColor: Colors["green"][600],
-    color: Colors["green"][600],
+    backgroundColor: COLORS["green"][600],
+    color: COLORS["green"][600],
   },
 });

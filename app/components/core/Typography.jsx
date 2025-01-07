@@ -6,9 +6,13 @@ const Typography = ({
   gutterBottom = false,
   style,
   children,
+  numberOfLines = 0,
 }) => {
   return (
-    <Text style={[styles[variant], gutterBottom && styles.gutterBottom, style]}>
+    <Text
+      numberOfLines={numberOfLines}
+      style={[styles[variant], gutterBottom && styles.gutterBottom, style]}
+    >
       {children}
     </Text>
   );

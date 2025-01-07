@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Typography from "@/components/Typography.jsx";
-import { Colors } from "@/constants/Colors";
+import Typography from "@/components/core/Typography.jsx";
+import COLORS from "@/constants/Colors";
 
 const Chip = ({ children }) => {
   return (
@@ -10,7 +10,7 @@ const Chip = ({ children }) => {
         borderRadius: 99,
         paddingHorizontal: 14,
         paddingVertical: 6,
-        backgroundColor: Colors["green"][300],
+        backgroundColor: COLORS["green"][300],
       }}
     >
       <Typography variant="body2">{children}</Typography>
