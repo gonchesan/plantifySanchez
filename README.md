@@ -1,50 +1,81 @@
-# Welcome to your Expo app 👋
+<div align="center">    
+ 
+# Plantify App 🌱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an e-commerce project created with [Expo](https://expo.dev).
 
-## Get started
+[![Paper](http://img.shields.io/badge/paper-arxiv.1001.2234-B31B1B.svg)](https://www.nature.com/articles/nature14539)
+[![Conference](http://img.shields.io/badge/NeurIPS-2019-4b44ce.svg)](https://papers.nips.cc/book/advances-in-neural-information-processing-systems-31-2018)
+[![Conference](http://img.shields.io/badge/ICLR-2019-4b44ce.svg)](https://papers.nips.cc/book/advances-in-neural-information-processing-systems-31-2018)
+[![Conference](http://img.shields.io/badge/AnyConference-year-4b44ce.svg)](https://papers.nips.cc/book/advances-in-neural-information-processing-systems-31-2018)
 
-1. Install dependencies
+<!--
+ARXIV
+[![Paper](http://img.shields.io/badge/arxiv-math.co:1480.1111-B31B1B.svg)](https://www.nature.com/articles/nature14539)
+-->
+
+![CI testing](https://github.com/PyTorchLightning/deep-learning-project-template/workflows/CI%20testing/badge.svg?branch=master&event=push)
+
+<!--
+Conference
+-->
+</div>
+
+## Table of contents
+
+- [General info](#general-info)
+- [Folder structure](#folder-structure)
+- [Technologies](#technologies)
+- [Requirements](#requirements)
+- [Setup](#setup)
+
+## General info
+
+This project is simple Lorem ipsum dolor generator.
+
+## Folder structure
+
+```
+.
+├── build # Compiled files (alternatively `dist`)
+├── docs # Documentation files (alternatively `doc`)
+├── src # Source files (alternatively `lib` or `app`)
+├── test # Automated tests (alternatively `spec` or `tests`)
+├── tools # Tools and utilities
+├── LICENSE
+└── README.md
+```
+
+## Technologies
+
+Project is created with:
+
+- Lorem version: 12.3
+- Ipsum version: 2.33
+- Ament library version: 999
+
+## Requirements
+
+This is a example of requirements.
+
+## Setup
+
+To run this project, install it locally using npm. But first:
+
+1. Clone project
+
+   ```bash
+   git clone https://github.com/gonchesan/plantifySanchez.git
+   ```
+
+2. Install dependencies
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Start the app
 
    ```bash
     npx expo start
    ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
