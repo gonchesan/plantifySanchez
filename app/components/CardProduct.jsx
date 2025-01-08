@@ -1,9 +1,10 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 
-import Typography from "@/components/core/Typography";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+
+import Typography from "@/components/core/Typography";
 
 const CardProduct = ({ product }) => {
   const { title, price, rating } = product;
