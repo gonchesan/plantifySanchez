@@ -1,45 +1,17 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 
-import ShoppingStack from "./ShoppingStack";
-import TabBarIcon from "@/components/core/TabBarIcon";
+import AuthStack from "@/navigation/AuthStack";
+import DashboardStack from "@/navigation/DashboardStack";
 
 const Navigator = () => {
-  const Tab = createBottomTabNavigator();
-
+  //TODO isAuth to show Auth or Dashboard Stack
+  const isAuthenticated = false;
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarStyle: styles.tabBar,
-          tabBarLabelPosition: "beside-icon",
-        }}
-      >
-        <Tab.Screen
-          name="ShopStack"
-          component={ShoppingStack}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <TabBarIcon
-                text="Home"
-                icon={focused ? "home" : "home-outline"}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      {isAuthenticated ? <DashboardStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
 
 export default Navigator;
-
-const styles = StyleSheet.create({
-  tabBar: {
-    height: 70,
-  },
-});
