@@ -6,7 +6,7 @@ import DashboardStack from "@/navigation/DashboardStack";
 
 const Navigator = () => {
   //TODO isAuth to show Auth or Dashboard Stack
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   return (
     <NavigationContainer>
       {isAuthenticated ? <DashboardStack /> : <AuthStack />}
