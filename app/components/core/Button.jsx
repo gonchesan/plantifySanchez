@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import Typography from "@/components/core/Typography.jsx";
 import { Ionicons } from "@expo/vector-icons";
 
