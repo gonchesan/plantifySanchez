@@ -1,14 +1,23 @@
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import React from "react";
+
+import { useDispatch } from "react-redux";
 
 import COLORS from "@/constants/Colors";
 import Typography from "@/components/core/Typography";
+import { filterProducts } from "@/features/shop/shopSlice";
 
 const CardItemCategory = ({ item: category }) => {
+  const dispatch = useDispatch();
   return (
-    <View style={styles.container}>
-      <Typography>{category}</Typography>
-    </View>
+    <Pressable
+      style={styles.container}
+      onPress={() => dispatch(filterProducts(category))}
+    >
+      <View>
+        <Typography>{category}</Typography>
+      </View>
+    </Pressable>
   );
 };
 

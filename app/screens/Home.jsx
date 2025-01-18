@@ -7,6 +7,9 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+
+import { useSelector } from "react-redux";
+
 import { Ionicons } from "@expo/vector-icons";
 
 import COLORS from "@/constants/Colors";
@@ -17,6 +20,7 @@ import ListItemProduct from "@/components/ListItemProduct";
 
 const Home = () => {
   const navigation = useNavigation();
+  const PRODUCTS = useSelector((state) => state.shopReducer.products);
 
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
@@ -108,7 +112,7 @@ const Home = () => {
         </View>
       </View>
 
-      <ListItemProduct />
+      <ListItemProduct products={PRODUCTS} />
     </SafeAreaView>
   );
 };

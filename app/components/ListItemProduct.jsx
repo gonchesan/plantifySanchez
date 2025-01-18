@@ -2,13 +2,13 @@ import { FlatList, StyleSheet } from "react-native";
 import React from "react";
 import CardProduct from "./CardProduct";
 
-import PRODUCTS from "@/data/products.json";
+// import PRODUCTS from "@/data/products.json";
 
-const ListItemProduct = () => {
+const ListItemProduct = ({ products }) => {
   return (
     <FlatList
       numColumns={2}
-      data={PRODUCTS}
+      data={products}
       renderItem={({ item }) => <CardProduct product={item} />}
       keyExtractor={(item) => item.id}
       contentContainerStyle={styles.container}
