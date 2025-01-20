@@ -6,6 +6,7 @@ import Header from "@/components/core/Header";
 import Home from "@/screens/Home";
 import Categories from "@/screens/Categories";
 import ProductDetail from "@/screens/ProductDetail";
+import ProductsByCategory from "@/screens/ProductsByCategory";
 
 const ShoppingStack = () => {
   const Stack = createNativeStackNavigator();
@@ -13,7 +14,7 @@ const ShoppingStack = () => {
     <Stack.Navigator
       screenOptions={({ route }) => ({
         header: () => {
-          return route.name !== "Home" ? (
+          return route.name !== "home" ? (
             <Header
               title={
                 route.name
@@ -28,9 +29,13 @@ const ShoppingStack = () => {
         },
       })}
     >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Categories" component={Categories} />
-      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="categories" component={Categories} />
+      <Stack.Screen name="product-detail" component={ProductDetail} />
+      <Stack.Screen
+        name="products-by-category"
+        component={ProductsByCategory}
+      />
     </Stack.Navigator>
   );
 };
