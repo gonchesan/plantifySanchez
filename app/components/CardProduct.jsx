@@ -14,7 +14,7 @@ const CardProduct = ({ product }) => {
     <View style={styles.container}>
       <Pressable
         onPress={() =>
-          navigation.navigate("ProductDetail", {
+          navigation.navigate("product-detail", {
             product,
           })
         }
@@ -46,7 +46,7 @@ export default CardProduct;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1 / 2,
   },
   image: {
     backgroundColor: "#F6F6F6",

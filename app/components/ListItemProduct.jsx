@@ -26,5 +26,7 @@ const styles = StyleSheet.create({
   },
   columnWrapper: {
     gap: 16,
+    flex: 1,
+    justifyContent: "flex-start",
   },
 });

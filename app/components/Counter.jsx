@@ -8,8 +8,8 @@ import COLORS from "@/constants/Colors";
 import Typography from "@/components/core/Typography";
 import { decrement, increment } from "@/features/counter/counterSlice";
 
-const Counter = () => {
-  const count = useSelector((state) => state.counterReducer.value);
+const Counter = ({ quantity = 0, incrementFunc, decrementFunc }) => {
+  // const count = useSelector((state) => state.counterReducer.value);
   const dispatch = useDispatch();
   // const [count, setCount] = useState(0);
 
@@ -23,12 +23,12 @@ const Counter = () => {
   return (
     <View style={styles.container}>
       {/* <Pressable style={styles.button} onPress={() => editCounter(false)}> */}
-      <Pressable style={styles.button} onPress={() => dispatch(decrement())}>
+      <Pressable style={styles.button} onPress={decrementFunc}>
         <Ionicons name="remove" style={styles.textColor} />
       </Pressable>
-      <Typography style={styles.textColor}>{count}</Typography>
+      <Typography style={styles.textColor}>{quantity}</Typography>
       {/* <Pressable style={styles.button} onPress={() => editCounter(true)}> */}
-      <Pressable style={styles.button} onPress={() => dispatch(increment())}>
+      <Pressable style={styles.button} onPress={incrementFunc}>
         <Ionicons name="add" style={styles.textColor} />
       </Pressable>
     </View>

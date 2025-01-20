@@ -1,12 +1,20 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
-import Typography from "./core/Typography";
+import { useDispatch } from "react-redux";
+
+import { addItem, removeItem } from "@/features/cart/cartSlice";
+
 import COLORS from "@/constants/Colors";
+
+import { Ionicons } from "@expo/vector-icons";
+import Typography from "@/components/core/Typography";
 import Counter from "@/components/Counter";
 
 const ItemProductCart = ({ product }) => {
   const { title, price } = product;
+
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       {/* //Imagen */}
@@ -17,8 +25,15 @@ const ItemProductCart = ({ product }) => {
           ${price}
         </Typography>
         <View style={styles.actionCard}>
-          <Counter />
-          <Pressable style={styles.removeButton}>
+          <Counter
+            quantity={product.quantity}
+            incrementFunc={() => dispatch(addItem({ product }))}
+            decrementFunc={() => dispatch(removeItem({ product }))}
+          />
+          <Pressable
+            style={styles.removeButton}
+            onPress={() => dispatch(removeItem({ product, discardItem: true }))}
+          >
             <Ionicons
               name="trash-outline"
               size={24}

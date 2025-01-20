@@ -6,16 +6,23 @@ import { useDispatch } from "react-redux";
 import COLORS from "@/constants/Colors";
 import Typography from "@/components/core/Typography";
 import { filterProducts } from "@/features/shop/shopSlice";
+import { useNavigation } from "@react-navigation/native";
 
 const CardItemCategory = ({ item: category }) => {
-  const dispatch = useDispatch();
+  const { name, slug } = category;
+
+  const navigation = useNavigation();
+
   return (
     <Pressable
       style={styles.container}
-      onPress={() => dispatch(filterProducts(category))}
+      onPress={() =>
+        navigation.navigate("products-by-category", { category: slug })
+      }
+      // onPress={() => dispatch(filterProducts(category))}
     >
       <View>
-        <Typography>{category}</Typography>
+        <Typography>{name}</Typography>
       </View>
     </Pressable>
   );
@@ -30,6 +37,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 7,
-    flex: 1,
+    flex: 1 / 2,
   },
 });
