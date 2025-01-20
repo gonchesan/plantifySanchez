@@ -1,14 +1,29 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { addItem } from "@/features/cart/cartSlice";
 
 import COLORS from "@/constants/Colors";
-import Typography from "@/components/core/Typography";
+
 import { Ionicons } from "@expo/vector-icons";
+import Typography from "@/components/core/Typography";
 import Button from "@/components/core/Button";
 import Counter from "@/components/Counter";
 
 const ProductDetail = ({ route }) => {
   const { product } = route.params;
+  const dispatch = useDispatch();
+
+  const [count, setCount] = useState(0);
+
+  const editCounter = (isAdded) => {
+    if (isAdded) {
+      setCount((prevValues) => prevValues + 1);
+    } else {
+      if (count > 0) setCount((prevValues) => prevValues - 1);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -49,7 +64,11 @@ const ProductDetail = ({ route }) => {
         </Typography>
         <View style={{ flexDirection: "row", gap: 16, marginVertical: 16 }}>
           <Typography variant="h6">Quantity</Typography>
-          <Counter />
+          <Counter
+            quantity={count}
+            incrementFunc={() => editCounter(true)}
+            decrementFunc={() => editCounter(false)}
+          />
         </View>
         <View
           style={{
@@ -67,7 +86,12 @@ const ProductDetail = ({ route }) => {
               ${product.price}
             </Typography>
           </View>
-          <Button style={{ flex: 1, width: "100%" }} icon="cart" rounded="full">
+          <Button
+            style={{ flex: 1, width: "100%" }}
+            icon="cart"
+            rounded="full"
+            onPress={() => dispatch(addItem({ product, quantity: count }))}
+          >
             Agregar al carrito
           </Button>
           {/* <Pressable style={styles.button}>

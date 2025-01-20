@@ -1,10 +1,4 @@
-import {
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  TextInput,
-  View,
-} from "react-native";
+import { Image, Pressable, StyleSheet, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
@@ -17,10 +11,15 @@ import COLORS from "@/constants/Colors";
 import Typography from "@/components/core/Typography.jsx";
 import CategorySelector from "@/components/CategorySelector";
 import ListItemProduct from "@/components/ListItemProduct";
+import { useGetProductsQuery } from "@/services/shopService";
 
 const Home = () => {
   const navigation = useNavigation();
-  const PRODUCTS = useSelector((state) => state.shopReducer.products);
+  // const PRODUCTS = useSelector((state) => state.shopReducer.products);
+  const { data: PRODUCTS, isLoading } = useGetProductsQuery();
+  //TODO Create helper to format filter by backend
+  // setProducts(Object.values(data).filter(product => product.title.includes(keyword)))
+  const { image } = useSelector((state) => state.authReducer.user);
 
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
@@ -36,7 +35,23 @@ const Home = () => {
             alignItems: "center",
           }}
         >
-          <View
+          {/* <View
+            style={{
+              backgroundColor: "gray",
+              width: 56,
+              height: 56,
+              borderRadius: 99,
+            }}
+          /> */}
+          <Image
+            source={
+              image
+                ? { uri: image }
+                : {
+                    uri: "https://media.istockphoto.com/id/610003972/vector/vector-businessman-black-silhouette-isolated.jpg?s=612x612&w=0&k=20&c=Iu6j0zFZBkswfq8VLVW8XmTLLxTLM63bfvI6uXdkacM=",
+                  }
+            }
+            resizeMode="cover"
             style={{
               backgroundColor: "gray",
               width: 56,
@@ -98,7 +113,7 @@ const Home = () => {
               Recomended for you
             </Typography>
 
-            <Pressable onPress={() => navigation.push("Categories")}>
+            <Pressable onPress={() => navigation.push("categories")}>
               <Typography
                 variant="button"
                 style={{ color: COLORS["green"][500] }}
