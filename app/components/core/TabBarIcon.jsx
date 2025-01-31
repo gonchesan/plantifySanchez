@@ -9,7 +9,7 @@ import Typography from "@/components/core/Typography";
 const TabBarIcon = ({ text, icon }) => {
   return (
     <View style={styles.container}>
-      <Ionicons name={icon} size={28} color={COLORS.green[400]} />
+      <Ionicons name={icon} size={28} color={COLORS.green[500]} />
       <Typography variant="caption" style={styles.text}>
         {text}
       </Typography>
@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   text: {
-    color: COLORS.green[600],
+    color: COLORS.green[500],
   },
 });

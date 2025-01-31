@@ -39,7 +39,7 @@ export default Counter;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.green[100],
+    backgroundColor: COLORS.green[200],
     flexDirection: "row",
     alignItems: "center",
     gap: 8,

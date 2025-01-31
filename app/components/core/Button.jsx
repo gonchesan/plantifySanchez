@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import Typography from "@/components/core/Typography.jsx";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -28,31 +28,27 @@ const Button = memo(
     };
 
     return (
-      <View>
-        <Pressable
-          onPress={onPress}
-          style={({ pressed }) => [
-            {
-              backgroundColor: pressed
-                ? COLORS["green"][600]
-                : COLORS["green"][500],
-            },
-            isHovered && styles.containedHover,
-            getBorderRadius(rounded),
-            styles.contained,
-            style,
-          ]}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {icon ? (
-            <Ionicons name={icon} size={22} style={styles.symbol} />
-          ) : null}
-          <Typography variant="button" style={styles.containedText}>
-            {children}
-          </Typography>
-        </Pressable>
-      </View>
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed
+              ? COLORS["green"][300]
+              : COLORS["green"][500],
+          },
+          isHovered && styles.containedHover,
+          getBorderRadius(rounded),
+          styles.contained,
+          style,
+        ]}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {icon ? <Ionicons name={icon} size={22} style={styles.symbol} /> : null}
+        <Typography variant="button" style={styles.containedText}>
+          {children}
+        </Typography>
+      </Pressable>
     );
   }
 );
@@ -97,7 +93,7 @@ const styles = StyleSheet.create({
     tintColor: COLORS["white"],
   },
   containedHover: {
-    backgroundColor: COLORS["green"][600],
-    color: COLORS["green"][600],
+    backgroundColor: COLORS["green"][500],
+    color: COLORS["green"][500],
   },
 });

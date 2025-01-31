@@ -6,16 +6,18 @@ import { useNavigation } from "@react-navigation/native";
 import { AUTH_ERRORS_MAP } from "@/constants/Errors";
 import { loginSchema } from "@/validations/loginSchema";
 
+import { deleteSesion, insertSession } from "@/config/dbSqlite";
 import { setUser } from "@/features/auth/authSlice";
+import { useLoginMutation } from "@/services/authService";
 
 import TextField from "@/components/core/TextField";
 import Button from "@/components/core/Button";
-import { useLoginMutation } from "@/services/authService";
+import Spinner from "@/components/core/Spinner.jsx";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [triggerLogIn, { isLoading, isError, error, isSuccess }] =
+  const [triggerLogIn, { isLoading: isUpdating, isError, error, isSuccess }] =
     useLoginMutation();
 
   const [form, setForm] = useState({
@@ -64,6 +66,9 @@ const Login = () => {
           localId: response.localId,
         };
         dispatch(setUser(user));
+
+        await deleteSesion();
+        await insertSession(user.localId, user.email, user.idToken);
       }
     } catch (error) {
       if (Object.hasOwn(error, "data")) {
@@ -80,8 +85,10 @@ const Login = () => {
       console.log("🚀 ~ handleLoginSubmit ~ error:", error);
     }
   };
+
   return (
     <View style={{ paddingHorizontal: 24, paddingTop: 24, gap: 16 }}>
+      {isUpdating && <Spinner />}
       <Text style={{ marginBottom: 16 }}>Login View</Text>
       <TextField
         label="Email"

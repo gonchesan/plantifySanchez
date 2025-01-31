@@ -22,7 +22,6 @@ export default ListItemProduct;
 const styles = StyleSheet.create({
   container: {
     gap: 16,
-    paddingTop: 24,
   },
   columnWrapper: {
     gap: 16,

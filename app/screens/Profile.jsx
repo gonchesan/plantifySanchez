@@ -4,21 +4,27 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useGetUserQuery } from "@/services/userService";
+import { setProfilePicture } from "@/features/auth/authSlice";
 
 import Button from "@/components/core/Button";
-import { setProfilePicture } from "@/features/auth/authSlice";
+import Spinner from "@/components/core/Spinner.jsx";
 
 const Profile = () => {
   const navigation = useNavigation();
-  const image = useSelector((state) => state.authReducer.user.image);
+  // const image = useSelector((state) => state.authReducer.user.image);
+  const localId = useSelector((state) => state.authReducer.user.localId);
+  const { data: user, isLoading } = useGetUserQuery({ localId });
+
+  if (isLoading) return <Spinner />;
 
   return (
     <View style={{ marginTop: 70, alignItems: "center", gap: 20 }}>
+      <Text>Profile screen</Text>
       {/* //TODO add defaultProfileImg */}
       <Image
         source={
-          image
-            ? { uri: image }
+          user?.image
+            ? { uri: user.image }
             : {
                 uri: "https://media.istockphoto.com/id/610003972/vector/vector-businessman-black-silhouette-isolated.jpg?s=612x612&w=0&k=20&c=Iu6j0zFZBkswfq8VLVW8XmTLLxTLM63bfvI6uXdkacM=",
               }
@@ -31,7 +37,11 @@ const Profile = () => {
           backgroundColor: "gray",
         }}
       />
-      <Text>Profile screen</Text>
+      {user?.address ? (
+        <Text>Direccion: {user?.address}</Text>
+      ) : (
+        <Text>Aun no tienes una direccion cargada</Text>
+      )}
       <Button onPress={() => navigation.navigate("image-selector")}>
         Add profile photo
       </Button>

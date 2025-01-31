@@ -27,7 +27,7 @@ const App = () => {
     <>
       <Provider store={providerStore}>
         <Navigator />
-        <StatusBar style="light" backgroundColor={COLORS.green[200]} />
+        <StatusBar style="light" backgroundColor={COLORS.green[500]} />
       </Provider>
     </>
   );

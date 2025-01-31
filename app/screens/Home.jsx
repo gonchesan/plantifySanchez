@@ -35,14 +35,33 @@ const Home = () => {
             alignItems: "center",
           }}
         >
-          {/* <View
-            style={{
-              backgroundColor: "gray",
-              width: 56,
-              height: 56,
-              borderRadius: 99,
-            }}
-          /> */}
+          <View style={{ gap: 2, flex: 1 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 4,
+                position: "relative",
+              }}
+            >
+              <Typography
+                variant="h6"
+                style={{ fontWeight: "bold", color: COLORS["black"][200] }}
+              >
+                Welcome back
+              </Typography>
+              <Image
+                source={require("@/assets/images/waving-hand.png")}
+                style={{
+                  height: 34,
+                  width: 34,
+                }}
+              />
+            </View>
+            <Typography variant="body1" style={{ color: COLORS["black"][100] }}>
+              John Doe
+            </Typography>
+          </View>
+
           <Image
             source={
               image
@@ -59,13 +78,6 @@ const Home = () => {
               borderRadius: 99,
             }}
           />
-          <View style={{ gap: 2, flex: 1 }}>
-            <Typography variant="body2">Good morning</Typography>
-            <Typography variant="h6">John Doe</Typography>
-          </View>
-
-          <Ionicons name="notifications-outline" size={28} />
-          <Ionicons name="heart-outline" size={28} />
         </View>
         <View
           style={{
@@ -91,16 +103,11 @@ const Home = () => {
             }}
             placeholder="Search"
           />
-
-          <Ionicons
-            name="options-outline"
-            size={24}
-            style={{ color: COLORS["green"][600] }}
-          />
         </View>
         <View
           style={{
             marginTop: 12,
+            marginBottom: 24,
           }}
         >
           <View

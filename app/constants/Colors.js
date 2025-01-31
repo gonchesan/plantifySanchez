@@ -1,18 +1,27 @@
 const COLORS = {
   green: {
-    50: "#f1f8f3",
-    100: "#ddeee1",
-    200: "#bdddc7",
-    300: "#91c4a4",
-    400: "#589a73",
-    500: "#418861",
-    600: "#2f6c4b",
-    700: "#25573e",
-    800: "#204533",
-    900: "#1b392a",
-    950: "#0e2018",
+    50: "#F6F9F6",
+    100: "#EDF4ED",
+    200: "#DBE8DB",
+    300: "#DBE8DB",
+    400: "#6FA56F",
+    500: "#4B8E4B",
   },
-  black: "#242424",
+  error: {
+    100: "#FCEDE9",
+    200: "#F4DBD6",
+    300: "#ED4F2B",
+  },
+  success: {
+    100: "#EAF7EE", // In toast bg
+    200: "#D1E7D5", // In toast border
+    300: "#3DB95D", // In toast bg-Icon with white icon
+  },
+  black: {
+    100: "#6F7782",
+    200: "#273340",
+    300: "#181B0E",
+  },
   gray: "#797979",
   white: "#F6F6F6",
 };

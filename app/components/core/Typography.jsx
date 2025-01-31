@@ -1,6 +1,8 @@
 import { StyleSheet, Text } from "react-native";
 import React from "react";
 
+import COLORS from "@/constants/Colors";
+
 const Typography = ({
   variant = "body1",
   gutterBottom = false,
@@ -22,8 +24,8 @@ export default Typography;
 
 const styles = StyleSheet.create({
   h1: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     display: "block",
     marginVertical: 0,
@@ -33,8 +35,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "-0.01562em",
   },
   h2: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -43,8 +45,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "-0.00833em",
   },
   h3: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -53,8 +55,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0em",
   },
   h4: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -63,8 +65,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0.00735em",
   },
   h5: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -73,8 +75,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0em",
   },
   h6: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -83,8 +85,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0.0075em",
   },
   subtitle1: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -93,8 +95,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0.00938em",
   },
   subtitle2: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -103,8 +105,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0.00714em",
   },
   body1: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -113,8 +115,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0.00938em",
   },
   body2: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -123,8 +125,8 @@ const styles = StyleSheet.create({
     // letterSpacing: "0.01071em",
   },
   button: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",
@@ -143,8 +145,8 @@ const styles = StyleSheet.create({
     display: "block",
   },
   overline: {
-    color: "inherit",
-    tintColor: "inherit",
+    color: COLORS["black"][300],
+    tintColor: COLORS["black"][300],
     marginHorizontal: 0,
     marginVertical: 0,
     fontFamily: "Inter, Helvetica, Arial, sans-serif",

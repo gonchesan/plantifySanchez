@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useGetProductsQuery } from "@/services/shopService";
-import ListItemProduct from "@/components/ListItemProduct";
+
+import ListItemProduct from "@/components/ListItemProduct.jsx";
+import Spinner from "@/components/core/Spinner.jsx";
 
 const ProductsByCategory = ({ route }) => {
   const { category } = route.params;
@@ -17,12 +19,7 @@ const ProductsByCategory = ({ route }) => {
     }
   }, [isSuccess]);
 
-  if (isLoading)
-    return (
-      <View>
-        <Text>LOADING...</Text>
-      </View>
-    );
+  if (isLoading) return <Spinner />;
 
   if (isError)
     return (

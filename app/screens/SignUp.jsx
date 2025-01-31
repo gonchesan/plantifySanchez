@@ -6,16 +6,19 @@ import { useNavigation } from "@react-navigation/native";
 import { AUTH_ERRORS_MAP } from "@/constants/Errors";
 import { signUpSchema } from "@/validations/signUpSchema";
 
+import { deleteSesion, insertSession } from "@/config/dbSqlite";
 import { useSignUpMutation } from "@/services/authService";
 import { setUser } from "@/features/auth/authSlice";
 
 import Button from "@/components/core/Button";
 import TextField from "@/components/core/TextField";
+import Spinner from "@/components/core/Spinner.jsx";
 
 const SignUp = () => {
   const navigation = useNavigation();
   // const [triggerSignUp, { isLoading, isError }] = useLoginMutation();
-  const [triggerSignUp, { isLoading, isError }] = useSignUpMutation();
+  const [triggerSignUp, { isLoading: isUpdating, isError }] =
+    useSignUpMutation();
   const dispatch = useDispatch();
 
   // const [email, setEmail] = useState("");
@@ -74,6 +77,8 @@ const SignUp = () => {
           localId: response.localId,
         };
         dispatch(setUser(user));
+        await deleteSesion();
+        await insertSession(user.localId, user.email, user.idToken);
       }
 
       //TODO show success
@@ -100,6 +105,8 @@ const SignUp = () => {
 
   return (
     <View style={{ paddingHorizontal: 24, paddingTop: 24, gap: 16 }}>
+      {isUpdating && <Spinner />}
+
       <Text>SignUp view</Text>
       <TextField
         label="Email"
