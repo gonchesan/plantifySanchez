@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSesion } from "@/config/dbSqlite";
+import { clearUser } from "@/features/auth/authSlice";
 
 import { Ionicons } from "@expo/vector-icons";
 

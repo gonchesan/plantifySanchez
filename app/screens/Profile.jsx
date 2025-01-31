@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { deleteSesion } from "@/config/dbSqlite";
 import { useGetUserQuery } from "@/services/userService";
+import { clearUser } from "@/features/auth/authSlice";
 
 import COLORS from "@/constants/Colors.js";
 

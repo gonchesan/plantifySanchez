@@ -6,23 +6,22 @@ import { useNavigation } from "@react-navigation/native";
 import { AUTH_ERRORS_MAP } from "@/constants/Errors";
 import { signUpSchema } from "@/validations/signUpSchema";
 
+import PlatifyLogo from "@/assets/images/plantify-logo.svg";
 import { deleteSesion, insertSession } from "@/config/dbSqlite";
 import { useSignUpMutation } from "@/services/authService";
 import { setUser } from "@/features/auth/authSlice";
+import COLORS from "@/constants/Colors.js";
 
 import Button from "@/components/core/Button";
 import TextField from "@/components/core/TextField";
 import Spinner from "@/components/core/Spinner.jsx";
+import Typography from "@/components/core/Typography";
 
 const SignUp = () => {
   const navigation = useNavigation();
   const [triggerSignUp, { isLoading: isUpdating, isError, isSuccess }] =
     useSignUpMutation();
   const dispatch = useDispatch();
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const [form, setForm] = useState({
     email: {
@@ -56,6 +55,15 @@ const SignUp = () => {
     }));
   };
 
+  const setErrorInAllFields = (errorMessage) => {
+    setForm((prev) => ({
+      ...prev,
+      email: { ...prev.email, error: errorMessage },
+      password: { ...prev.password, error: errorMessage },
+      confirmPassword: { ...prev.confirmPassword, error: errorMessage },
+    }));
+  };
+
   const handleSignUpSubmit = async () => {
     const email = form.email.value;
     const password = form.password.value;
@@ -79,34 +87,44 @@ const SignUp = () => {
         await deleteSesion();
         await insertSession(user.localId, user.email, user.idToken);
       }
-
-      //TODO show success
-      // dispatch(emptyCart());
     } catch (error) {
       // Errors from Google
       if (Object.hasOwn(error, "data")) {
-        //TODO error of mappings.
         const errorMessage = AUTH_ERRORS_MAP[error.data.error.message];
-        console.log(errorMessage);
+        setErrorInAllFields(errorMessage);
         return;
       }
       if (Object.hasOwn(error, "errors")) {
         //Errors from yup validation
-        //TODO show errrors
         setError(error.path, error.message);
         return;
       }
       //Another type of errors
-      //TODO show errrors
       console.error("Error submitting signup: ", error);
     }
   };
 
   return (
-    <View style={{ paddingHorizontal: 24, paddingTop: 24, gap: 16 }}>
+    <View style={styles.container}>
       {isUpdating && <Spinner />}
 
-      <Text>SignUp view</Text>
+      <View style={styles.imagesWrapper}>
+        <PlatifyLogo />
+      </View>
+      <Typography variant="h5" style={styles.title}>
+        Register account
+      </Typography>
+      <View style={{ flexDirection: "row", gap: 8 }}>
+        <Typography variant="h5" style={styles.title}>
+          to
+        </Typography>
+        <Typography variant="h5" style={[styles.title, styles.titleGreen]}>
+          PLANTIFY
+        </Typography>
+      </View>
+      <Typography style={styles.description}>
+        Hello there, register to continue
+      </Typography>
       <TextField
         label="Email"
         error={form.email.error}
@@ -131,7 +149,18 @@ const SignUp = () => {
         secureTextEntry
       />
       <Button onPress={handleSignUpSubmit}>Sign up</Button>
-      <Button onPress={() => navigation.navigate("login")}>Login</Button>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="body2">Already have an account?</Typography>
+        <Button variant="ghost" onPress={() => navigation.navigate("login")}>
+          Login
+        </Button>
+      </View>
       {isSuccess && (
         <Toast
           status="success"
@@ -145,4 +174,23 @@ const SignUp = () => {
 
 export default SignUp;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    gap: 16,
+    flex: 1,
+  },
+  imagesWrapper: {
+    alignItems: "center",
+  },
+  title: {
+    fontWeight: "bold",
+  },
+  titleGreen: {
+    color: COLORS["green"][500],
+  },
+  description: {
+    color: COLORS["black"][100],
+  },
+});
