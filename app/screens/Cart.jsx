@@ -25,7 +25,7 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
-  const [triggerPost, { isLoading: isUpdating, isSuccess }] =
+  const [triggerPost, { isLoading: isUpdating, isSuccess, isError }] =
     usePostOrderMutation();
 
   const goToCategories = () => {
@@ -47,12 +47,8 @@ const Cart = () => {
           userLogged,
         };
 
-        const response = await triggerPost({ order, localId }).unwrap();
-        console.log("🚀 ~ handleSubmit ~ response:", response);
-        //TODO snackbar or toast component
-        // console.log(response.data?.name);
+        await triggerPost({ order, localId }).unwrap();
         dispatch(emptyCart());
-        // navigation.navigate("OrdersStack", { screen: "orders" });
       } catch (error) {
         console.error("Error submitting order: ", err);
       }
@@ -63,8 +59,6 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-      {/* <Text>{isUpdating ? "CARGANDO..." : "NARANJA"}</Text>
-      <Text>{isSuccess ? "ISSUCCESS" : "FALLO AL HACERSE"}</Text> */}
       {PRODUCTS_IN_CART.length ? (
         <>
           <FlatList
@@ -90,6 +84,13 @@ const Cart = () => {
           status="success"
           title="Success!"
           content="Your order was sent."
+        />
+      )}
+      {isError && (
+        <Toast
+          status="error"
+          title="Ups! Something was wrong"
+          content="Your order coudn't be shipped."
         />
       )}
     </View>

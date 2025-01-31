@@ -12,6 +12,7 @@ import Typography from "@/components/core/Typography.jsx";
 import CategorySelector from "@/components/CategorySelector";
 import ListItemProduct from "@/components/ListItemProduct";
 import { useGetProductsQuery } from "@/services/shopService";
+import DropdownUser from "@/components/DropdownUser.jsx";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -19,7 +20,6 @@ const Home = () => {
   const { data: PRODUCTS, isLoading } = useGetProductsQuery();
   //TODO Create helper to format filter by backend
   // setProducts(Object.values(data).filter(product => product.title.includes(keyword)))
-  const { image } = useSelector((state) => state.authReducer.user);
 
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
@@ -61,8 +61,8 @@ const Home = () => {
               John Doe
             </Typography>
           </View>
-
-          <Image
+          <DropdownUser />
+          {/* <Image
             source={
               image
                 ? { uri: image }
@@ -77,7 +77,7 @@ const Home = () => {
               height: 56,
               borderRadius: 99,
             }}
-          />
+          /> */}
         </View>
         <View
           style={{

@@ -66,6 +66,12 @@ const ImageSelector = () => {
           <Button onPress={pickImage}>Upload from gallery</Button>
         </>
       )}
+      {/* <Dropdown anchorEl={anchorEl} open={open} >
+        <Button onPress={() => navigation.navigate("image-selector")}>
+          Add profile photo
+        </Button>
+
+      </Dropdown> */}
     </View>
   );
 };

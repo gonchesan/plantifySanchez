@@ -16,8 +16,7 @@ import Spinner from "@/components/core/Spinner.jsx";
 
 const SignUp = () => {
   const navigation = useNavigation();
-  // const [triggerSignUp, { isLoading, isError }] = useLoginMutation();
-  const [triggerSignUp, { isLoading: isUpdating, isError }] =
+  const [triggerSignUp, { isLoading: isUpdating, isError, isSuccess }] =
     useSignUpMutation();
   const dispatch = useDispatch();
 
@@ -133,6 +132,13 @@ const SignUp = () => {
       />
       <Button onPress={handleSignUpSubmit}>Sign up</Button>
       <Button onPress={() => navigation.navigate("login")}>Login</Button>
+      {isSuccess && (
+        <Toast
+          status="success"
+          title="Success!"
+          content="Your account has been created."
+        />
+      )}
     </View>
   );
 };

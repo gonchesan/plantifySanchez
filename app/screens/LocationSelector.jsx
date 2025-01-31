@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useUpdateAddressMutation } from "@/services/userService";
 import Spinner from "@/components/core/Spinner.jsx";
+import Button from "@/components/core/Button.jsx";
 
 const MAP_BOX_TOKEN =
   "pk.eyJ1IjoiZ29uY2hlc2FuIiwiYSI6ImNtNmJqamR3MjA5aDkyam9vZTF4NGpqcTQifQ._pYweAznLhc4ut_EeD65xQ";
@@ -67,10 +68,9 @@ const LocationPicker = () => {
     navigation.navigate("profile");
   };
 
-  if (isLoading) return <Spinner />;
-
   return (
     <View style={styles.container}>
+      {isLoading ? <Spinner /> : null}
       {location.latitude && location.longitude ? (
         <MapView
           style={styles.map}
@@ -96,7 +96,7 @@ const LocationPicker = () => {
 
       {address ? <Text>{`Address: ${address}`}</Text> : null}
 
-      <Button onPress={handleConfirmLocation} title="Confirm Location" />
+      <Button onPress={handleConfirmLocation}>Confirm Location</Button>
     </View>
   );
 };
@@ -104,6 +104,8 @@ const LocationPicker = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 24,
+    paddingVertical: 24,
   },
   map: {
     flex: 1,

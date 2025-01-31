@@ -13,7 +13,7 @@ const ProfileStack = () => {
   return (
     <Stack.Navigator
       screenOptions={() => ({
-        header: () => <Header title="My profile" />,
+        header: () => <Header title="My profile" showDropdown={false} />,
       })}
     >
       <Stack.Screen name="profile" component={Profile} />
