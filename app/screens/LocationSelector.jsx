@@ -9,9 +9,6 @@ import { useUpdateAddressMutation } from "@/services/userService";
 import Spinner from "@/components/core/Spinner.jsx";
 import Button from "@/components/core/Button.jsx";
 
-const MAP_BOX_TOKEN =
-  "pk.eyJ1IjoiZ29uY2hlc2FuIiwiYSI6ImNtNmJqamR3MjA5aDkyam9vZTF4NGpqcTQifQ._pYweAznLhc4ut_EeD65xQ";
-
 const LocationPicker = () => {
   const [location, setLocation] = useState({ longitude: 0, latitude: 0 });
   const [error, setError] = useState("");
@@ -45,7 +42,7 @@ const LocationPicker = () => {
   }, []);
 
   const fetchAddress = async (latitude, longitude) => {
-    const reverseGeocodingUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${MAP_BOX_TOKEN}`;
+    const reverseGeocodingUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${process.env.EXPO_PUBLIC_MAP_BOX_TOKEN}`;
     try {
       const response = await fetch(reverseGeocodingUrl);
       const data = await response.json();
