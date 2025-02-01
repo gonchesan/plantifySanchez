@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -20,7 +20,11 @@ const CardProduct = ({ product }) => {
         }
       >
         {/* //Imagen */}
-        <View style={styles.image} />
+        <Image
+          source={{ uri: product.image }}
+          style={styles.image}
+          resizeMode="contain"
+        />
         <View style={styles.footer}>
           <Typography
             numberOfLines={1}

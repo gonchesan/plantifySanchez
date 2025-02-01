@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -27,14 +27,18 @@ const ProductDetail = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <View
+      {/* <View
         style={{
           backgroundColor: "gray",
           width: "100%",
           flex: 1,
         }}
+      /> */}
+      <Image
+        source={{ uri: product.image }}
+        style={styles.image}
+        resizeMode="contain"
       />
-      {/* <Image source={{uri:product.thumbnail}} style={styles.image} resizeMode='contain'/> */}
       <View style={{ flex: 1 }}>
         <View
           style={{
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-    backgroundColor: "red",
+    backgroundColor: COLORS["green"][100],
   },
   title: {
     fontWeight: "bold",

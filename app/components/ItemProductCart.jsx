@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 import { useDispatch } from "react-redux";
 
@@ -18,7 +18,7 @@ const ItemProductCart = ({ product }) => {
   return (
     <View style={styles.container}>
       {/* //Imagen */}
-      <View style={styles.image} />
+      <Image source={{ uri: product.image }} style={styles.image} />
       <View style={styles.bodyCard}>
         <Typography variant="subtitle1">{title}</Typography>
         <Typography variant="subtitle1" style={{ color: COLORS.green[600] }}>
