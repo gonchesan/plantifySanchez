@@ -9,6 +9,7 @@ export const authSlice = createSlice({
       localId: null,
       image: null,
       address: null,
+      fullname: null,
     },
   },
 
@@ -27,6 +28,7 @@ export const authSlice = createSlice({
           idToken: null,
           localId: null,
           address: null,
+          fullname: null,
         },
       };
     },

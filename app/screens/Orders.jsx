@@ -13,12 +13,14 @@ const Orders = () => {
   const { data: orders, isLoading } = useGetOrdersByUserQuery({ localId });
 
   if (isLoading) return <Spinner />;
-  if (!orders) return;
-  <EmptyState
-    title="Your inbox of orders is empty"
-    body="All incoming requests will be listed in this screen"
-    icon="inbox"
-  />;
+  if (!orders)
+    return (
+      <EmptyState
+        title="Your inbox of orders is empty"
+        body="All incoming requests will be listed in this screen"
+        icon="inbox"
+      />
+    );
 
   return (
     <View style={styles.container}>

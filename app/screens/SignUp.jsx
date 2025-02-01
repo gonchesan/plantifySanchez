@@ -9,6 +9,7 @@ import { signUpSchema } from "@/validations/signUpSchema";
 import PlatifyLogo from "@/assets/images/plantify-logo.svg";
 import { deleteSesion, insertSession } from "@/config/dbSqlite";
 import { useSignUpMutation } from "@/services/authService";
+import { useSaveUserMutation } from "@/services/userService";
 import { setUser } from "@/features/auth/authSlice";
 import COLORS from "@/constants/Colors.js";
 
@@ -21,9 +22,14 @@ const SignUp = () => {
   const navigation = useNavigation();
   const [triggerSignUp, { isLoading: isUpdating, isError, isSuccess }] =
     useSignUpMutation();
+  const [triggerSaveUser] = useSaveUserMutation();
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
+    fullname: {
+      value: "",
+      error: "",
+    },
     email: {
       value: "",
       error: "",
@@ -58,6 +64,7 @@ const SignUp = () => {
   const setErrorInAllFields = (errorMessage) => {
     setForm((prev) => ({
       ...prev,
+      fullname: { ...prev.fullname, error: errorMessage },
       email: { ...prev.email, error: errorMessage },
       password: { ...prev.password, error: errorMessage },
       confirmPassword: { ...prev.confirmPassword, error: errorMessage },
@@ -68,38 +75,55 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+    const fullname = form.fullname.value;
 
     try {
       await signUpSchema.validate({
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
+        fullname,
+        email,
+        password,
+        confirmPassword,
       });
 
       const response = await triggerSignUp({ email, password }).unwrap();
+
       if (response.idToken) {
         const user = {
           email: response.email,
           idToken: response.idToken,
           localId: response.localId,
+          fullname,
         };
+
+        // Dispatch user to Redux store
         dispatch(setUser(user));
+
+        // Save user to Firestore
+        await triggerSaveUser({
+          userId: response.localId,
+          fullname,
+          email,
+        }).unwrap();
+
+        // Save session locally in SQLite
         await deleteSesion();
-        await insertSession(user.localId, user.email, user.idToken);
+        await insertSession(
+          user.localId,
+          user.email,
+          user.idToken,
+          user.fullname
+        );
       }
     } catch (error) {
-      // Errors from Google
       if (Object.hasOwn(error, "data")) {
         const errorMessage = AUTH_ERRORS_MAP[error.data.error.message];
         setErrorInAllFields(errorMessage);
         return;
       }
       if (Object.hasOwn(error, "errors")) {
-        //Errors from yup validation
         setError(error.path, error.message);
         return;
       }
-      //Another type of errors
       console.error("Error submitting signup: ", error);
     }
   };
@@ -147,6 +171,13 @@ const SignUp = () => {
         error={form.confirmPassword.error}
         onChange={(text) => handleChangeForm(text, "confirmPassword")}
         secureTextEntry
+      />
+      <TextField
+        label="Fullname"
+        placeholder="Fullname"
+        name="fullname"
+        error={form.fullname.error}
+        onChange={(text) => handleChangeForm(text, "fullname")}
       />
       <Button onPress={handleSignUpSubmit}>Sign up</Button>
       <View

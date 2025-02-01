@@ -4,6 +4,8 @@ import { useGetProductsQuery } from "@/services/shopService";
 
 import ListItemProduct from "@/components/ListItemProduct.jsx";
 import Spinner from "@/components/core/Spinner.jsx";
+import EmptyState from "@/components/EmptyState.jsx";
+import Toast from "@/components/core/Toast.jsx";
 
 const ProductsByCategory = ({ route }) => {
   const { category } = route.params;
@@ -23,14 +25,24 @@ const ProductsByCategory = ({ route }) => {
 
   if (isError)
     return (
-      <View>
-        <Text>{error.message}...</Text>
-      </View>
+      <Toast
+        status="error"
+        title="Ups! Something was wrong"
+        content={error.message}
+      />
     );
 
   return (
     <View style={styles.container}>
-      <ListItemProduct products={productsFormatted} />
+      {productsFormatted.length ? (
+        <ListItemProduct products={productsFormatted} />
+      ) : (
+        <EmptyState
+          title="No results found"
+          body="Try adjusting your search to find what you are looking for"
+          icon="search"
+        />
+      )}
     </View>
   );
 };

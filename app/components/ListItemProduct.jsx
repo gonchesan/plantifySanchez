@@ -2,8 +2,6 @@ import { FlatList, StyleSheet } from "react-native";
 import React from "react";
 import CardProduct from "./CardProduct";
 
-// import PRODUCTS from "@/data/products.json";
-
 const ListItemProduct = ({ products }) => {
   return (
     <FlatList

@@ -19,7 +19,6 @@ const CardProduct = ({ product }) => {
           })
         }
       >
-        {/* //Imagen */}
         <Image
           source={{ uri: product.image }}
           style={styles.image}

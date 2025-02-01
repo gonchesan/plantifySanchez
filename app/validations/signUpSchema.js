@@ -1,6 +1,7 @@
 import { object, ref, string } from "yup";
 
 export const signUpSchema = object().shape({
+  fullname: string().required("Fullname is required"),
   confirmPassword: string()
     .oneOf([ref("password"), null], "Password must match")
     .required(),

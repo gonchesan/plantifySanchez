@@ -1,25 +1,17 @@
-import { Image, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-
 import { useSelector } from "react-redux";
-
-import { Ionicons } from "@expo/vector-icons";
 
 import COLORS from "@/constants/Colors";
 
 import Typography from "@/components/core/Typography.jsx";
-import CategorySelector from "@/components/CategorySelector";
-import ListItemProduct from "@/components/ListItemProduct";
-import { useGetProductsQuery } from "@/services/shopService";
 import DropdownUser from "@/components/DropdownUser.jsx";
+import ListItemCategories from "@/components/ListItemCategories.jsx";
 
 const Home = () => {
   const navigation = useNavigation();
-  // const PRODUCTS = useSelector((state) => state.shopReducer.products);
-  const { data: PRODUCTS, isLoading } = useGetProductsQuery();
-  //TODO Create helper to format filter by backend
-  // setProducts(Object.values(data).filter(product => product.title.includes(keyword)))
+  const user = useSelector((state) => state.authReducer.user);
 
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
@@ -58,51 +50,10 @@ const Home = () => {
               />
             </View>
             <Typography variant="body1" style={{ color: COLORS["black"][100] }}>
-              John Doe
+              {user?.fullname}
             </Typography>
           </View>
           <DropdownUser />
-          {/* <Image
-            source={
-              image
-                ? { uri: image }
-                : {
-                    uri: "https://media.istockphoto.com/id/610003972/vector/vector-businessman-black-silhouette-isolated.jpg?s=612x612&w=0&k=20&c=Iu6j0zFZBkswfq8VLVW8XmTLLxTLM63bfvI6uXdkacM=",
-                  }
-            }
-            resizeMode="cover"
-            style={{
-              backgroundColor: "gray",
-              width: 56,
-              height: 56,
-              borderRadius: 99,
-            }}
-          /> */}
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 8,
-            paddingVertical: 4,
-            paddingHorizontal: 16,
-            alignItems: "center",
-            marginTop: 16,
-            backgroundColor: "#f5f5f5",
-            borderRadius: 6,
-          }}
-        >
-          <Ionicons
-            name="search-outline"
-            size={24}
-            style={{ color: "#c3c3c3" }}
-          />
-          <TextInput
-            style={{
-              padding: 12,
-              flex: 1,
-            }}
-            placeholder="Search"
-          />
         </View>
         <View
           style={{
@@ -120,7 +71,7 @@ const Home = () => {
               Recomended for you
             </Typography>
 
-            <Pressable onPress={() => navigation.push("categories")}>
+            <Pressable onPress={() => navigation.push("products")}>
               <Typography
                 variant="button"
                 style={{ color: COLORS["green"][500] }}
@@ -129,12 +80,10 @@ const Home = () => {
               </Typography>
             </Pressable>
           </View>
-
-          <CategorySelector />
         </View>
       </View>
 
-      <ListItemProduct products={PRODUCTS} />
+      <ListItemCategories />
     </SafeAreaView>
   );
 };

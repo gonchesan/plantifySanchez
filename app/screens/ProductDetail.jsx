@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -27,13 +27,6 @@ const ProductDetail = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      {/* <View
-        style={{
-          backgroundColor: "gray",
-          width: "100%",
-          flex: 1,
-        }}
-      /> */}
       <Image
         source={{ uri: product.image }}
         style={styles.image}
@@ -98,9 +91,6 @@ const ProductDetail = ({ route }) => {
           >
             Agregar al carrito
           </Button>
-          {/* <Pressable style={styles.button}>
-            <Text style={styles.textButton}>Agregar al carrito</Text>
-          </Pressable> */}
         </View>
       </View>
     </View>
@@ -130,14 +120,10 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
   price: {
-    // fontSize: 20,
     fontWeight: "bold",
-    // paddingHorizontal: 50,
-    // paddingVertical: 20,
-    // textAlign: "right",
   },
   button: {
-    backgroundColor: COLORS.green["600"],
+    backgroundColor: COLORS.green["500"],
     marginHorizontal: 10,
     padding: 10,
     alignItems: "center",
